@@ -1,4 +1,6 @@
-from tabulate import tabulate      # tabulate package is used for Display data in a table format.
+from tabulate import tabulate  # tabulate package is used for Display data in a table format.
+
+
 # this program is for calculating percentage of btech
 def input_int_validate(value):
     # this function is to take input from user and validate
@@ -18,9 +20,6 @@ def input_int_validate(value):
                 print("enter in range")
 
     return int(sem_value)  # returns semesters value
-
-
-
 
 
 def input_str_validate():
@@ -44,10 +43,10 @@ def sgpa_display_table(records, total_credit_points, total_credits):
 
     print("{:>30}".format("Table of semester"))
     print(tabulate(records, headers=["subject", "Grade", "Credit", "Credit points"]))  # printing data in form of table
-    print("{:28}{:>17}".format(total_credits, total_credit_points))   # printing the total credits and credits points
-    sgpa=total_credit_points/total_credits                            # sgpa formula
+    print("{:28}{:>17}".format(total_credits, total_credit_points))  # printing the total credits and credits points
+    sgpa = total_credit_points / total_credits  # sgpa formula
     print("SGPA is:{:.2f}".format(sgpa))
-    per=(sgpa-0.5)*10                                                 # percentage of sgpa
+    per = (sgpa - 0.5) * 10  # percentage of sgpa
     print("Percentage of current semester:{:.2f}".format(per))
 
 
@@ -57,11 +56,9 @@ def grade_cal(score, credit):
 
     for i in grades:
         if i == score:
+            points = grades[i] * credit  # calculating the credit points
 
-            points = grades[i]*credit                                       # calculating the credit points
-
-    return points                                                         # returns credit points to represent() function
-
+    return points  # returns credit points to represent() function
 
 
 def semester_calculator():
@@ -75,12 +72,13 @@ def semester_calculator():
         subject = input("enter the subject name {}:".format(j))
         score = input_str_validate()
         credit = input_int_validate("credits:")
-        total_credits = total_credits+credit
+        total_credits = total_credits + credit
         credit_points = grade_cal(score, credit)
         total_credit_points = total_credit_points + credit_points
-        records.append([subject, score, credit, credit_points])      # appending the data to records list
+        records.append([subject, score, credit, credit_points])  # appending the data to records list
 
     sgpa_display_table(records, total_credit_points, total_credits)
+
 
 def calculator_selction():
     valid_input = False
@@ -102,40 +100,36 @@ def calculator_selction():
             else:
                 print("wrong option")
                 valid_input = False
+
+
 def cgpa_display_table(records, total_sem_credits, total_credit_points):
     print("{:>30}".format("Table of semesters "))
     print(tabulate(records, headers=["SGPA", "credits", "credit_points"]))  # printing data in form of table
-    print("{:>17}{:>17}".format(total_sem_credits, total_credit_points))   # printing the total credits and credits points
+    print(
+        "{:>17}{:>17}".format(total_sem_credits, total_credit_points))  # printing the total credits and credits points
     cgpa = total_credit_points / total_sem_credits
-    per = (cgpa - 0.5)*10                       # percentage of cgpa
+    per = (cgpa - 0.5) * 10  # percentage of cgpa
     print("CGPA of all semesters is:{:.2f}".format(cgpa))
     print("Percentage of current semester:{:.2f}".format(per))
 
-def cgpa_calculator():  #  this function calculates the CGPA
-    total_sems=input_int_validate("total semesters:")
-    total_sem_credits=0
-    total_credit_points=0
+
+def cgpa_calculator():  # this function calculates the CGPA
+    total_sems = input_int_validate("total semesters:")
+    total_sem_credits = 0
+    total_credit_points = 0
     records = []
-    for i in range(1, total_sems+1):
-        sgpa=float(input("SGPA value {}:".format(i)))
+    for i in range(1, total_sems + 1):
+        sgpa = float(input("SGPA value {}:".format(i)))
 
-        credits=input_int_validate("Total credites of semester:")
-        total_sem_credits=total_sem_credits+credits
+        credits = input_int_validate("Total credites of semester:")
+        total_sem_credits = total_sem_credits + credits
         credit_points = sgpa * credits
-        total_credit_points=total_credit_points+credit_points
-        records.append([sgpa,credits,credit_points])
+        total_credit_points = total_credit_points + credit_points
+        records.append([sgpa, credits, credit_points])
 
-    cgpa_display_table(records,total_sem_credits,total_credit_points)
+    cgpa_display_table(records, total_sem_credits, total_credit_points)
 
 
-wel="welcome to Percentage Calculator"
+wel = "welcome to Percentage Calculator"
 print("{:>60}".format(wel))
 calculator_selction()
-
-
-
-
-
-
-
-
