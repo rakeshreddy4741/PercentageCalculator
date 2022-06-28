@@ -20,6 +20,26 @@ def credit_validate():
 
     return int(sem_value)  # returns semesters value
 
+def subject_validate():
+    # this function is to take input from user and validate
+    sub_value = 'wrong'
+    valid_input = False
+    while sub_value.isdigit() == False or valid_input == False:  # validating with while loop checking the input format
+        sub_value = input("enter subjects :")
+
+        if not sub_value.isdigit():
+            print("Sorry that is not a digit!")
+
+        if sub_value.isdigit():
+            if int(sub_value) in range(1, 15):
+
+                valid_input = True
+            else:
+                valid_input = False
+                print("enter in range(1-15)")
+
+    return int(sub_value)  # returns subject value
+
 def input_validate():
     # this function is to take input from user and validate
     input_value = "322"
@@ -67,7 +87,7 @@ def represent():
     total_credit_points = 0
     total_credits = 0
     # for i in range(1, subject count + 1):
-    subjects_count = int(input("enter the subjects for semester "))
+    subjects_count = subject_validate()
     for j in range(1, subjects_count + 1):
         subject = input("enter the subject name {}:".format(j))
         score = input_validate()
