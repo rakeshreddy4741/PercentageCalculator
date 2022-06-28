@@ -81,7 +81,7 @@ def grade_cal(score, credit):
 
 
 
-def represent():
+def semester_calculator():
     # this function takes the input of semesters and pass data to display_table function
     records = []
     total_credit_points = 0
@@ -99,9 +99,34 @@ def represent():
 
     display_table(records, total_credit_points, total_credits)
 
+def calculator_selction():
+    valid_input = False
+    select = "wrong"
+    while select.isdigit() == False or valid_input == False:
+        select = input("select from following:\n1.semester(SGPA) percentage calculater\n2.CGPA calculator\n:")
+
+        if not select.isdigit():
+            print("wrong option")
+
+        if select.isdigit():
+            if int(select) == 1:
+                semester_calculator()
+                valid_input = True
+
+            elif int(select) == 2:
+                valid_input = True
+            else:
+                print("wrong option")
+                valid_input = False
+
 wel="welcome to Percentage Calculator"
 print("{:>60}".format(wel))
-represent()                                         # calling represent function
+calculator_selction()
+
+
+
+
+
 
 
 
